@@ -123,7 +123,7 @@ header {
         position: absolute;
         top: 0;
         //right desek de farketmez ama right:0 a transtition yapmak görsellik açısından mantıklı
-        right: 0;;
+        right: 0;
         width: 100%;
         height: 100vh;
         background-color: rgba(0, 0, 0, 0.5);
@@ -133,7 +133,7 @@ header {
       }
 
       .show-nav-wrapper {
-        //nav gösterildiğinde (show-nav) , siyah alan kendisi kadar daha fazla kayarak sol tarafı dolduruyor
+        //nav gösterildiğinde (show-nav) , siyah alan kendisi kadar daha fazla kayarak sağ tarafı dolduruyor
         transform: translateX(100%);
       }
 
