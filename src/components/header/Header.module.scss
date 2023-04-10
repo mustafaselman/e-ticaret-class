@@ -122,7 +122,7 @@ header {
         //nav anchor olduğundan %50 ekran genişliğinde bir siyah alan solda gizlenmek üzere nav üzerinde koyuluyor
         position: absolute;
         top: 0;
-        //right desek de farketmez ama right:0 a transtition yapmak görsellik açısından mantıklı
+        //left desek de farketmez ama right:0 a transtition yapmak görsellik açısından mantıklı (ekran büyüyüp küçülürken görülüyor)
         right: 0;
         width: 100%;
         height: 100vh;
