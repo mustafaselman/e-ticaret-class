@@ -15,7 +15,7 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "firebase": "^9.19.1",
-    "notiflix": "^3.2.5",
+    "notiflix": "^3.2.6",
     "react": "^18.2.0",
     "react-chartjs-2": "^5.0.1",
     "react-country-region-selector": "^3.6.1",
