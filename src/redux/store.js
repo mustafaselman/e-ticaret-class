@@ -3,12 +3,14 @@ import {configureStore, combineReducers } from "@reduxjs/toolkit"
 import authReducer from "./slice/authSlice"
 import productReducer from "./slice/productSlice"
 import filterReducer from "./slice/filterSlice"
+import cartReducer from "./slice/cartSlice"
 
 //reducerları ekleyeceğimiz yer
 const rootReducer = combineReducers({
     auth: authReducer,
     product: productReducer,
-    filter: filterReducer
+    filter: filterReducer,
+    cart: cartReducer
 })
 
 //burada reducerlar store a kaydediliyor

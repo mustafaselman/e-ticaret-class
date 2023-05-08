@@ -1,7 +1,7 @@
 import React from 'react'
 import {BrowserRouter, Route, Routes} from "react-router-dom"
 import {Header,Footer} from "./components"
-import {Admin, Contact,Home, Login, Register, Reset} from "./pages"
+import {Admin, Cart, Contact,Home, Login, Register, Reset} from "./pages"
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import AdminOnlyRoute from './components/adminOnlyRoute/AdminOnlyRoute';
@@ -20,6 +20,7 @@ const App = () => {
         <Route path="/reset" element={<Reset/>}/>
         <Route path="/admin/*" element={<AdminOnlyRoute><Admin/></AdminOnlyRoute>}/>
         <Route path="/product-details/:id" element={<ProductDetails/>}/>
+        <Route path="/cart" element={<Cart/>}/>
       </Routes>
       <Footer/>
       </BrowserRouter>
