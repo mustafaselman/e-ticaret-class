@@ -4,13 +4,15 @@ import authReducer from "./slice/authSlice"
 import productReducer from "./slice/productSlice"
 import filterReducer from "./slice/filterSlice"
 import cartReducer from "./slice/cartSlice"
+import checkoutReducer from "./slice/checkoutSlice"
 
 //reducerları ekleyeceğimiz yer
 const rootReducer = combineReducers({
     auth: authReducer,
     product: productReducer,
     filter: filterReducer,
-    cart: cartReducer
+    cart: cartReducer,
+    checkout: checkoutReducer
 })
 
 //burada reducerlar store a kaydediliyor

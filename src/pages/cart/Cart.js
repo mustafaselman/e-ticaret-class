@@ -1,11 +1,12 @@
 //// alışveriş sepeti (cart) sayfası
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { ADD_TO_CART, CALCULATE_SUBTOTAL, CALCULATE_TOTAL_QUANTITY, CLEAR_CART, DECREASE_CART, REMOVE_FROM_CART, selectCartItems, selectCartTotalAmount, selectCartTotalQuantity } from '../../redux/slice/cartSlice'
+import { ADD_TO_CART, CALCULATE_SUBTOTAL, CALCULATE_TOTAL_QUANTITY, CLEAR_CART, DECREASE_CART, REMOVE_FROM_CART, SAVE_URL, selectCartItems, selectCartTotalAmount, selectCartTotalQuantity } from '../../redux/slice/cartSlice'
 import styles from "./Cart.module.scss"
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { FaTrashAlt } from 'react-icons/fa'
 import Card from '../../components/card/Card'
+import { selectIsLoggedIn } from '../../redux/slice/authSlice'
 
 const Cart = () => {
 
@@ -14,6 +15,9 @@ const Cart = () => {
   const cartTotalQuantity = useSelector(selectCartTotalQuantity)
 
   const dispatch = useDispatch();
+  const isLoggedIn = useSelector(selectIsLoggedIn)
+  const navigate = useNavigate();
+  const url = window.location.href
 
   const increaseCart = (cart) => {
     dispatch(ADD_TO_CART(cart))
@@ -33,6 +37,18 @@ const Cart = () => {
     dispatch(CALCULATE_TOTAL_QUANTITY())
   },[dispatch,cartItems])
 
+  useEffect(()=>{
+    dispatch(SAVE_URL(url))
+  },[dispatch,url])
+
+  const checkout = () => {
+    if(isLoggedIn){
+      navigate("/checkout-details")
+    }
+    else {
+      navigate("/login")
+    }
+  }
   return (
     <section>
       <div className={`container ${styles.table}`}>
@@ -101,7 +117,7 @@ const Cart = () => {
                   <h3>{`$${cartTotalAmount.toFixed(2)}`}</h3>
                 </div>
                 <p>Tax an shipping calculated at checkout</p>
-                <button className="--btn --btn-primary --btn-block">Checkout</button>
+                <button className="--btn --btn-primary --btn-block" onClick={checkout}>Checkout</button>
               </Card>
             </div>
           </div>
