@@ -6,12 +6,17 @@ import styles from "./ProductDetails.module.scss"
 import spinnerImg from "../../../assets/spinner.gif"
 import { useDispatch, useSelector } from 'react-redux';
 import { ADD_TO_CART, CALCULATE_TOTAL_QUANTITY, DECREASE_CART, selectCartItems } from '../../../redux/slice/cartSlice';
+import useFetchCollection from '../../../customHooks/useFetchCollection';
+import Card from '../../card/Card';
+import StarsRating from 'react-star-rate';
 
 const ProductDetails = () => {
   const {id} = useParams();
   const [product,setProduct] = useState(null)
   const document = useFetchDocument("products", id)
 
+  const {data} = useFetchCollection("reviews")
+  const filteredReviews = data.filter((review) => review.productID === id)
   const dispatch = useDispatch();
   const cartItems = useSelector(selectCartItems)
 
@@ -67,6 +72,33 @@ const ProductDetails = () => {
           </div>
           </>
         )}
+        <Card cardClass={styles.card}>
+          <h3>Product Reviews</h3>
+          <div>
+            {filteredReviews.length === 0 ? (
+              <p>There are no reviews for this product yet.</p>
+            ) : (
+              <>
+              {filteredReviews.map((item,index)=>{
+                const {rate,review,reviewDate,userName} = item
+                return (
+                  <div key={index} className={styles.review}>
+                    <StarsRating value={rate}/>
+                    <p>{review}</p>
+                    <span>
+                      <b>{reviewDate}</b>
+                    </span>
+                    <br/>
+                    <span>
+                      <b>by: {userName}</b>
+                    </span>
+                  </div>
+                )
+              })}
+              </>
+            )}
+          </div>
+        </Card>
       </div>
     </section>
   )
